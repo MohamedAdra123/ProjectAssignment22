@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 @Component
 public class JWTTokenProvider {
     /*In order to get the value of the JWT secret from the application.properties file*/
-    @org.springframework.beans.factory.annotation.Value("${app.jwtsecret}")
-    private String jwtSecret;
+    @org.springframework.beans.factory.annotation.Value("${app.jwt-secret}")
+    private String jwtSecret="JWTSecretKey";
 
     /*In order to get the value of the JWT expiration from the application.properties file*/
     @org.springframework.beans.factory.annotation.Value("${app.jwt-expiration-milliseconds}")
@@ -53,6 +53,7 @@ public class JWTTokenProvider {
     // validate JWT token
     public boolean validateToken(String token){
         try{
+            System.out.println(jwtSecret);
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         }catch (SignatureException ex){
@@ -63,8 +64,6 @@ public class JWTTokenProvider {
             throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Expired JWT token");
         } catch (UnsupportedJwtException ex) {
             throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Unsupported JWT token");
-        } catch (IllegalArgumentException ex) {
-            throw new BlogAPIException(HttpStatus.BAD_REQUEST, "JWT claims string is empty.");
         }
     }
 }

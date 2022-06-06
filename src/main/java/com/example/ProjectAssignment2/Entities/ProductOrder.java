@@ -12,10 +12,10 @@ public class ProductOrder {
     @Id
     private int productOrderId;
 
-    @ManyToOne(targetEntity = Product.class)
+    @ManyToOne(targetEntity = Product.class , cascade = {CascadeType.ALL})
     private Product product;
 
-    @ManyToOne(targetEntity = Order.class)
+    @ManyToOne(targetEntity = Order.class , cascade = {CascadeType.ALL})
     private Order order;
     @Column
     private int quantity;

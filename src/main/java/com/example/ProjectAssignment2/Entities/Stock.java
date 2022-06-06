@@ -13,7 +13,7 @@ public class Stock {
     @Id
     private int stockId;
 
-    @ManyToOne(targetEntity = Product.class)
+    @ManyToOne(targetEntity = Product.class, cascade = {CascadeType.ALL})
     private Product product;
     @Column
     private int quantity;

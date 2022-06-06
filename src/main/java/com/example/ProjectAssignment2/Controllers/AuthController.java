@@ -28,7 +28,7 @@ import java.util.Collections;
 @RequestMapping("/api/v1/auth")
 
 public class AuthController<RoleRepository, JwtTokenProvider> {
-
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -37,10 +37,10 @@ public class AuthController<RoleRepository, JwtTokenProvider> {
     @Autowired
     private com.example.ProjectAssignment2.Repositories.RoleRepository roleRepository;
 
-
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    @Autowired
     private JWTTokenProvider tokenProvider;
 
 

@@ -43,7 +43,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public ProductDTO updateProduct(ProductDTO productDTO, int id) {
         Product product = productRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Product","id",id));
-        product.setProductId(productDTO.getId());
+        product.setId(productDTO.getId());
         product.setName(productDTO.getName());
         product.setPrice(productDTO.getPrice());
         product.setReference(productDTO.getReference());
@@ -61,7 +61,7 @@ public class ProductServiceImp implements ProductService {
     }
     public ProductDTO convertToDTO(Product product){
         ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(product.getProductId());
+        productDTO.setId(product.getId());
         productDTO.setPrice(product.getPrice());
         productDTO.setName(product.getName());
         productDTO.setReference(product.getReference());
@@ -72,7 +72,7 @@ public class ProductServiceImp implements ProductService {
     }
     public Product convertToEntity(ProductDTO productDTO){
         Product product = new Product();
-        product.setProductId(productDTO.getId());
+        product.setId(productDTO.getId());
         product.setPrice(productDTO.getPrice());
         product.setName(productDTO.getName());
         product.setReference(productDTO.getReference());

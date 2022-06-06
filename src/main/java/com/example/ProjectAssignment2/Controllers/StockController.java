@@ -21,23 +21,24 @@ public class StockController {
     public StockController(StockService stockService) {
         this.stockService = stockService;
     }
-    public ResponseEntity<List<StockDTO>> getAllProducts(){
+    @GetMapping
+    public ResponseEntity<List<StockDTO>> getAllStocks(){
         return ResponseEntity.ok().body(stockService.getAllStocks());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<StockDTO> getProductById(@PathVariable(name = "id") int id){
+    public ResponseEntity<StockDTO> getStockById(@PathVariable(name = "id") int id){
         return ResponseEntity.ok(stockService.getStockById(id));
     }
     @PostMapping
-    public ResponseEntity<StockDTO> createProduct(@RequestBody StockDTO stockDTO){
+    public ResponseEntity<StockDTO> createStock(@RequestBody StockDTO stockDTO){
         return new ResponseEntity<>(stockService.createStock(stockDTO), HttpStatus.OK);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<StockDTO> updateProduct(@Valid @RequestBody StockDTO stockDTO, @PathVariable(name = "id") int id){
+    public ResponseEntity<StockDTO> updateStock(@Valid @RequestBody StockDTO stockDTO, @PathVariable(name = "id") int id){
         return new ResponseEntity<>(stockService.updateStock(stockDTO,id), HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable(name = "id")int id){
+    public ResponseEntity<String> deleteStock(@PathVariable(name = "id")int id){
         stockService.deleteStockById(id);
         return new ResponseEntity<>("Deleted Successfully",HttpStatus.OK);
     }
